@@ -3,8 +3,11 @@ import ProductStore from "../../store/ProductStore.js";
 import StarRatings from "react-star-ratings/build/star-ratings.js";
 import {Link} from "react-router-dom";
 import ProductsSkeleton from "../../skeleton/products-skeleton.jsx";
+
 const Products = () => {
+
     const {ListByRemark,ListByRemarkRequest}=ProductStore();
+
     return (
         <div className="section">
             <div className="container-fluid py-5 bg-white">
@@ -45,7 +48,7 @@ const Products = () => {
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
                                                             }
                                                             return(
-                                                                <div className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
+                                                                <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
                                                                         <img className="w-100 rounded-top-2" src={item['image']} />
                                                                         <div className="card-body">
@@ -64,8 +67,6 @@ const Products = () => {
                                         )
                                     }
 
-
-
                                 </div>
                                 <div className="tab-pane fade" id="pills-trending" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
                                     {
@@ -80,7 +81,7 @@ const Products = () => {
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
                                                             }
                                                             return(
-                                                                <div className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
+                                                                <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
                                                                         <img className="w-100 rounded-top-2" src={item['image']} />
                                                                         <div className="card-body">
@@ -113,7 +114,7 @@ const Products = () => {
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
                                                             }
                                                             return(
-                                                                <div className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
+                                                                <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
                                                                         <img className="w-100 rounded-top-2" src={item['image']} />
                                                                         <div className="card-body">
@@ -146,7 +147,7 @@ const Products = () => {
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
                                                             }
                                                             return(
-                                                                <div className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
+                                                                <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
                                                                         <img className="w-100 rounded-top-2" src={item['image']} />
                                                                         <div className="card-body">
@@ -179,7 +180,7 @@ const Products = () => {
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
                                                             }
                                                             return(
-                                                                <div className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
+                                                                <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
                                                                         <img className="w-100 rounded-top-2" src={item['image']} />
                                                                         <div className="card-body">

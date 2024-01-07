@@ -41,7 +41,7 @@ const Details = () => {
 
                                 {
                                     Details[0]['discount']?(
-                                        <span className="bodyXLarge">Price: <strike class="text-secondary">{Details[0]['price']}</strike> {Details[0]['discountPrice']} </span>
+                                        <span className="bodyXLarge">Price: <strike className="text-secondary">{Details[0]['price']}</strike> {Details[0]['discountPrice']} </span>
                                     ):(
                                         <span className="bodyXLarge">Price: {Details[0]['price']}</span>
                                     )
@@ -55,7 +55,7 @@ const Details = () => {
                                         <option value="">Size</option>
                                         {
                                             Details[0]['details']['size'].split(",").map((item,i)=>{
-                                                return  <option value={item}>{item}</option>
+                                                return  <option key={i} value={item}>{item}</option>
                                             })
                                         }
                                     </select>
@@ -66,7 +66,7 @@ const Details = () => {
                                         <option value="">Color</option>
                                         {
                                             Details[0]['details']['color'].split(",").map((item,i)=>{
-                                                return  <option value={item}>{item}</option>
+                                                return  <option key={i} value={item}>{item}</option>
                                             })
                                         }
                                     </select>
@@ -99,9 +99,9 @@ const Details = () => {
                         </ul>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="Speci-tab-pane" role="tabpanel" aria-labelledby="Speci-tab" tabIndex="0">
-                                {
+                                {/* {
                                     parse(Details[0]['details']['des'])
-                                }
+                                } */}
                             </div>
                             <div className="tab-pane fade" id="Review-tab-pane" role="tabpanel" aria-labelledby="Review-tab" tabIndex="0">
                                <Reviews/>

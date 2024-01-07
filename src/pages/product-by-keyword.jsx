@@ -5,14 +5,14 @@ import Layout from "../components/layout/layout.jsx";
 import ProductList from "../components/product/product-list.jsx";
 
 const ProductByKeyword = () => {
-    const {ListByKeywordRequest}=ProductStore();
-    const {keyword}=useParams();
+    // const {ListByKeywordRequest}=ProductStore();
+    // const {keyword}=useParams();
 
-    useEffect(() => {
-        (async ()=>{
-            await ListByKeywordRequest(keyword)
-        })()
-    }, [keyword]);
+    // useEffect(() => {
+    //     (async ()=>{
+    //         await ListByKeywordRequest(keyword)
+    //     })()
+    // }, [keyword]);
 
 
     return (

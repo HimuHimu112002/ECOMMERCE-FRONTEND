@@ -3,10 +3,12 @@ import ProductStore from "../store/ProductStore.js";
 import {useParams} from "react-router-dom";
 import Layout from "../components/layout/layout.jsx";
 import ProductList from "../components/product/product-list.jsx";
+import Categories from '../components/product/categories.jsx';
 
 const ProductByCategory = () => {
     const {ListByCategoryRequest}=ProductStore();
     const {id}=useParams();
+    console.log(id)
 
     useEffect(() => {
         (async ()=>{
@@ -18,6 +20,7 @@ const ProductByCategory = () => {
     return (
         <Layout>
             <ProductList/>
+            <Categories/>
         </Layout>
     );
 };
