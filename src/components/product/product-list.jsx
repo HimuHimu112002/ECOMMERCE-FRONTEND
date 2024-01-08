@@ -6,13 +6,11 @@ import StarRatings from "react-star-ratings/build/star-ratings.js";
 
 
 const ProductList = () => {
-    //ListByFilterRequest
-    const {ListProduct,BrandListRequest,BrandList,CategoryList,CategoryListRequest}=ProductStore();
+    
+    const {ListProduct,BrandListRequest,BrandList,CategoryList,CategoryListRequest,ListByFilterRequest}=ProductStore();
     let [Filter,SetFilter]=useState({brandID:"", categoryID:"", priceMax:"", priceMin:""})
-
-
+    
     const inputOnChange=async (name,value)=>{
-        console.log("ii",name,value)
         SetFilter((data)=>({
             ...data,
             [name]:value
@@ -24,8 +22,8 @@ const ProductList = () => {
             BrandList===null?await BrandListRequest():null;
             CategoryList===null?await CategoryListRequest():null;
 
-            // let isEveryFilterPropertyEmpty=Object.values(Filter).every(value => value==="");
-            // !isEveryFilterPropertyEmpty?await ListByFilterRequest(Filter):null
+            let isEveryFilterPropertyEmpty=Object.values(Filter).every(value => value==="");
+            !isEveryFilterPropertyEmpty?await ListByFilterRequest(Filter):null
 
         })()
     }, [Filter]);
@@ -62,12 +60,12 @@ const ProductList = () => {
 
 
                         </select>
-                        {/* <label className="form-label mt-3">Maximum Price ${Filter.priceMax}</label>
-                        <input value={Filter.priceMax} onChange={async (e)=>{await inputOnChange('priceMax',e.target.value)}} min={0} max={1000000} step={1000} type="range" className="form-range" /> */}
+                        <label className="form-label mt-3">Maximum Price ${Filter.priceMax}</label>
+                        <input value={Filter.priceMax} onChange={async (e)=>{await inputOnChange('priceMax',e.target.value)}} min={0} max={2000} step={50} type="range" className="form-range" />
 
 
-                        {/* <label className="form-label mt-3">Minimum Price ${Filter.priceMin}</label>
-                        <input value={Filter.priceMin} onChange={async (e)=>{await inputOnChange('priceMin',e.target.value)}} min={0} max={1000000} step={1000} type="range" className="form-range" /> */}
+                        <label className="form-label mt-3">Minimum Price ${Filter.priceMin}</label>
+                        <input value={Filter.priceMin} onChange={async (e)=>{await inputOnChange('priceMin',e.target.value)}} min={0} max={2000} step={10} type="range" className="form-range" />
                     </div>
                 </div>
                 <div className="col-md-9 p-2">

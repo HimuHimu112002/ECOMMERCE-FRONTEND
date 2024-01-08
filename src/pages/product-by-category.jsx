@@ -8,7 +8,6 @@ import Categories from '../components/product/categories.jsx';
 const ProductByCategory = () => {
     const {ListByCategoryRequest}=ProductStore();
     const {id}=useParams();
-    console.log(id)
 
     useEffect(() => {
         (async ()=>{

@@ -49,7 +49,6 @@ const ProductStore=create((set)=>({
     },
 
     ListByCategoryRequest:async(CategoryID)=>{
-        console.log(CategoryID)
         set({ListProduct:null})
         let res=await axios.get(`/api/v1/ProductListByCategory/${CategoryID}`);
         if(res.data['status']==="success"){
@@ -57,6 +56,7 @@ const ProductStore=create((set)=>({
         }
     },
     
+    // done ==========================
     ListByKeywordRequest:async(Keyword)=>{
         set({ListProduct:null})
         let res=await axios.get(`/api/v1/ProductListByKeyword/${Keyword}`);
@@ -65,14 +65,15 @@ const ProductStore=create((set)=>({
         }
     },
 
-    // ListByFilterRequest:async(postBody)=>{
-    //     set({ListProduct:null})
-    //     let res=await axios.post(`/api/v1/ProductListByFilter`,postBody);
-    //     if(res.data['status']==="success"){
-    //         set({ListProduct:res.data['data']})
-    //     }
-    // },
+    ListByFilterRequest:async(postBody)=>{
+        set({ListProduct:null})
+        let res=await axios.post(`/api/v1/ProductListByFilter`,postBody);
+        if(res.data['status']==="success"){
+            set({ListProduct:res.data['data']})
+        }
+    },
 
+    // done ===================
     SearchKeyword:"",
     SetSearchKeyword:async(keyword)=>{
         set({SearchKeyword:keyword})
