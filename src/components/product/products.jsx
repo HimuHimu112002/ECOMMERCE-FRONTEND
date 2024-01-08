@@ -43,10 +43,14 @@ const Products = () => {
                                                     {
                                                         ListByRemark.map((item,i)=>{
 
-                                                            let price=<p className="bodyMedium  text-dark my-1">Price: ${item['price']} </p>
-                                                            if(item['discount']===true){
-                                                                price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
-                                                            }
+                                                            let price = <p className="bodyMedium  text-dark my-1">Regular Price: <strike>${item['price']}</strike> </p>
+                                                            
+                                                            let x = <p>{item['price'] - item['discountPrice']}</p>
+
+                                                            {/* if(item['discount'] === true){
+                                                                price = <p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
+                                                            } */}
+                                                            
                                                             return(
                                                                 <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
@@ -54,6 +58,11 @@ const Products = () => {
                                                                         <div className="card-body">
                                                                             <p className="bodySmal text-secondary my-1">{item['title']}</p>
                                                                             {price}
+
+                                                                            <p className="bodyMedium  text-dark my-1">Discount Price:  ${item.discountPrice}</p>
+
+                                                                            <p className="bodyMedium  text-dark my-1">Selling Price:  ${ parseInt(item.price) - item.discountPrice}</p>
+                                                                            
                                                                             <StarRatings rating={parseFloat(item['star'])} starRatedColor="red" starDimension="15px" starSpacing="2px" />
                                                                         </div>
                                                                     </Link>
@@ -77,9 +86,9 @@ const Products = () => {
                                                         ListByRemark.map((item,i)=>{
 
                                                             let price=<p className="bodyMedium  text-dark my-1">Price: ${item['price']} </p>
-                                                            if(item['discount']===true){
+                                                            {/* if(item['discount']===true){
                                                                 price=<p className="bodyMedium  text-dark my-1">Price:<strike> ${item['price']} < /strike> ${item['discountPrice']} </p>
-                                                            }
+                                                            } */}
                                                             return(
                                                                 <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
                                                                     <Link to={`/details/${item['_id']}`} className="card shadow-sm h-100 rounded-3 bg-white">
@@ -87,6 +96,7 @@ const Products = () => {
                                                                         <div className="card-body">
                                                                             <p className="bodySmal text-secondary my-1">{item['title']}</p>
                                                                             {price}
+                                                                            
                                                                             <StarRatings rating={parseFloat(item['star'])} starRatedColor="red" starDimension="15px" starSpacing="2px" />
                                                                         </div>
                                                                     </Link>

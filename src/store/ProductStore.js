@@ -2,6 +2,7 @@ import create from 'zustand';
 import axios  from "axios";
 
 const ProductStore=create((set)=>({
+    
     // done ===================
     BrandList:null,
     BrandListRequest:async()=>{
@@ -39,6 +40,7 @@ const ProductStore=create((set)=>({
         }
     },
 
+    // done ===================
     ListProduct:null,
     ListByBrandRequest:async(BrandID)=>{
         set({ListProduct:null})
@@ -48,6 +50,7 @@ const ProductStore=create((set)=>({
         }
     },
 
+    // done ===================
     ListByCategoryRequest:async(CategoryID)=>{
         set({ListProduct:null})
         let res=await axios.get(`/api/v1/ProductListByCategory/${CategoryID}`);
@@ -65,6 +68,7 @@ const ProductStore=create((set)=>({
         }
     },
 
+    // done ===================
     ListByFilterRequest:async(postBody)=>{
         set({ListProduct:null})
         let res=await axios.post(`/api/v1/ProductListByFilter`,postBody);

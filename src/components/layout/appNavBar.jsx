@@ -17,7 +17,7 @@ const AppNavBar = () => {
                                     <i className="bi bi-envelope"></i> Support@PlanB.com
                                 </span>
                                 <span className="f-12 mx-2">
-                                    <i className="bi bi-envelope"></i> 01774688159
+                                    <i className="bi bi-envelope"></i> 01733571516
                                 </span>
                             </span>
                         </div>
