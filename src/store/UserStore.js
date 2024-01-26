@@ -2,13 +2,13 @@ import create from 'zustand';
 import axios  from "axios";
 import {getEmail, setEmail, unauthorized} from "../utility/utility.js";
 import Cookies from "js-cookie";
-const UserStore=create((set)=>({
+const UserStore = create((set)=>({
 
     isLogin:()=>{
         return !!Cookies.get('token');
     },
 
-    LoginFormData:{email:""},
+    LoginFormData:{email:"ABC"},
     LoginFormOnChange:(name,value)=>{
         set((state)=>({
             LoginFormData:{
@@ -19,7 +19,7 @@ const UserStore=create((set)=>({
     },
     UserOTPRequest:async(email)=>{
         set({isFormSubmit:true})
-        let res=await axios.post(`/api/v1/OtpMatch/${email}`);
+        let res=await axios.post(`/api/v1/UserLogin/${email}`);
         setEmail(email);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
@@ -28,15 +28,16 @@ const UserStore=create((set)=>({
 
     UserLogoutRequest:async()=>{
         set({isFormSubmit:true})
-        let res=await axios.get(`/api/v1/UserLogout`);
+        let res=await axios.post(`/api/v1/UserLogout`);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
 
 
 
-    OTPFormData:{otp:""},
+    OTPFormData:{otp:"123"},
     OTPFormOnChange:(name,value)=>{
+        console.log(value)
         set((state)=>({
             OTPFormData:{
                 ...state.OTPFormData,
@@ -44,25 +45,17 @@ const UserStore=create((set)=>({
             }
         }))
     },
+    
     VerifyLoginRequest:async(otp)=>{
         set({isFormSubmit:true})
         let email= getEmail();
-        let res=await axios.post(`/api/v1/UserLogin/${email}/${otp}`);
+        let res=await axios.post(`/api/v1/OtpMatch/${email}/${otp}`);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
 
 
     isFormSubmit:false,
-
-
-
-
-
-
-
-
-
 
     ProfileForm:{cus_add:"",cus_city:"",cus_country:"",cus_fax:"",cus_name:"",cus_phone:"",cus_postcode:"",cus_state:"",ship_add:"",ship_city:"",ship_country:"",ship_name:"",ship_phone:"",ship_postcode:"",ship_state:""},
     ProfileFormChange:(name,value)=>{

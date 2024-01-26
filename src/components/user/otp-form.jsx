@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import UserSubmitButton from "./UserSubmitButton.jsx";
 import UserStore from "../../store/UserStore.js";
 import ValidationHelper from "../../utility/ValidationHelper.js";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
-import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+
 const OtpForm = () => {
 
     let {OTPFormData,OTPFormOnChange,VerifyLoginRequest}=UserStore();
@@ -19,31 +18,7 @@ const OtpForm = () => {
             res?navigate("/"):toast.error("Something Went Wrong !")
         }
     }
-
-
-    
-    //const [otp, setRandomOtp] = useState("")
-    //console.log(otp)
-    //console.log(otp)
-    //let params = useParams()
-    // const [fromData, setFromData] = useState({
-    //     otp: "",
-    //   })
-
-    // let onFormSubmit= async () =>{
-    //     await axios.post("http://localhost:5000/api/v1/OtpMatch",
-    //     {
-    //       otp: otp
-    //     }).then(()=>{
-    //         navigate("/")
-            
-    //     })
-    // }
-    // let handleFromdata =(e)=>{
-    //     setFromData({...fromData, [e.target.name]:e.target.value})
-    //   }
-
-
+   
     return (
         <div className="container section">
             <div className="row d-flex justify-content-center">
@@ -51,6 +26,7 @@ const OtpForm = () => {
                     <div className="card p-5">
                         <h4>Enter Verification Code</h4>
                         <p>A verification code has been sent to the email address you provide</p>
+
                         <input value={OTPFormData.otp} onChange={(e)=>{OTPFormOnChange("otp",e.target.value)}}  placeholder="Verification" type="text" className="form-control"/>
                         <UserSubmitButton onClick={onFormSubmit} submit={false} className="btn mt-3 btn-success" text="Submit"/>
                     </div>

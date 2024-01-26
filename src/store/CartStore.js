@@ -35,7 +35,7 @@ const CartStore=create((set)=>({
     CartCount:0,
     CartListRequest:async()=>{
         try {
-            let res=await axios.get(`/api/v1/CartList`);
+            let res=await axios.get(`/api/v1/CartServices`);
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
 

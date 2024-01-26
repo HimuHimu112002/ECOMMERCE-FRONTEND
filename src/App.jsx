@@ -34,7 +34,7 @@ const App = () => {
                 <Route path="/contact" element={<ContactPage/>}/>
                 <Route path="/complain" element={<ComplainPage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/OtpMatch/:email" element={<OtpPage/>}/>
+                <Route path="/otp" element={<OtpPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/cart" element={<CartPage/>}/>
                 <Route path="/invoices" element={<InvoicePage/>}/>

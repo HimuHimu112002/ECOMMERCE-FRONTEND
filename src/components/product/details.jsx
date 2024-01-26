@@ -25,7 +25,6 @@ const Details = () => {
     }
     
     const AddCart = async (productID) => {
-        console.log(productID)
         let res=await CartSaveRequest(CartForm,productID);
 
         if(res){
