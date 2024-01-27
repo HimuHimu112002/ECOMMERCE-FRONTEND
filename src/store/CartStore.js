@@ -20,7 +20,7 @@ const CartStore=create((set)=>({
         try {
             set({isCartSubmit:true})
             PostBody.productID=productID
-            let res=await axios.post(`/api/v1/SaveCart`,PostBody);
+            let res=await axios.post();
             return res.data['status'] === "success";
         }catch (e) {
             unauthorized(e.response.status)
@@ -35,7 +35,7 @@ const CartStore=create((set)=>({
     CartCount:0,
     CartListRequest:async()=>{
         try {
-            let res=await axios.get(`/api/v1/CartServices`);
+            let res=await axios.get();
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
 

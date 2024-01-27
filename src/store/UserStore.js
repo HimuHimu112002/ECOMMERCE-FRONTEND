@@ -8,7 +8,7 @@ const UserStore = create((set)=>({
         return !!Cookies.get('token');
     },
 
-    LoginFormData:{email:"ABC"},
+    LoginFormData:{email:"mdhmaktaruzzaman9101@gmail.com"},
     LoginFormOnChange:(name,value)=>{
         set((state)=>({
             LoginFormData:{
@@ -71,7 +71,8 @@ const UserStore = create((set)=>({
     ProfileDetails:null,
     ProfileDetailsRequest:async()=>{
         try {
-            let res=await axios.get(`/api/v1/ReadProfile`);
+            let res=await axios.get("http://localhost:5000/api/v1/ReadProfile");
+            console.log(res.data)
             if(res.data['data'].length>0){
                 set({ProfileDetails:res.data['data'][0]})
                 set({ProfileForm:res.data['data'][0]})
@@ -86,7 +87,7 @@ const UserStore = create((set)=>({
     ProfileSaveRequest:async(PostBody)=>{
         try {
             set({ProfileDetails:null})
-            let res=await axios.post(`/api/v1/UpdateProfile`,PostBody);
+            let res=await axios.post(`/api/v1/CreateUserProfile`,PostBody);
             return res.data['status'] === "success";
         }catch (e) {
             unauthorized(e.response.status)

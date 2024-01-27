@@ -14,9 +14,10 @@ const AppNavBar = () => {
     const {CartCount,CartListRequest}=CartStore();
 
     const onLogout=async ()=>{
-        await UserLogoutRequest()
+        //await UserLogoutRequest()
         sessionStorage.clear();
         localStorage.clear();
+        Cookies.remove('token')
         navigate("/");
     }
 
