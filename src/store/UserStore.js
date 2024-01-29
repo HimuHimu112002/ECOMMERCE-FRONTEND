@@ -1,13 +1,12 @@
 import create from 'zustand';
 import axios  from "axios";
-import {getEmail, setEmail, unauthorized} from "../utility/utility.js";
+import {getEmail, getToken, setEmail, unauthorized} from "../utility/utility.js";
 import Cookies from "js-cookie";
 const UserStore = create((set)=>({
-
+  
     isLogin:()=>{
         return !!Cookies.get('token');
     },
-
     LoginFormData:{email:"mdhmaktaruzzaman9101@gmail.com"},
     LoginFormOnChange:(name,value)=>{
         set((state)=>({
@@ -35,7 +34,7 @@ const UserStore = create((set)=>({
 
 
 
-    OTPFormData:{otp:"123"},
+    OTPFormData:{otp:""},
     OTPFormOnChange:(name,value)=>{
         console.log(value)
         set((state)=>({
@@ -59,6 +58,7 @@ const UserStore = create((set)=>({
 
     ProfileForm:{cus_add:"",cus_city:"",cus_country:"",cus_fax:"",cus_name:"",cus_phone:"",cus_postcode:"",cus_state:"",ship_add:"",ship_city:"",ship_country:"",ship_name:"",ship_phone:"",ship_postcode:"",ship_state:""},
     ProfileFormChange:(name,value)=>{
+        console.log(value)
         set((state)=>({
             ProfileForm:{
                 ...state.ProfileForm,
@@ -71,8 +71,11 @@ const UserStore = create((set)=>({
     ProfileDetails:null,
     ProfileDetailsRequest:async()=>{
         try {
-            let res=await axios.get("http://localhost:5000/api/v1/ReadProfile");
-            console.log(res.data)
+            const headers = {
+                'user_id': '659279f3bfe531ab7537567d',
+                'Content-Type': 'application/json',
+            };
+            let res=await axios.get("/api/v1/ReadProfile", { headers });
             if(res.data['data'].length>0){
                 set({ProfileDetails:res.data['data'][0]})
                 set({ProfileForm:res.data['data'][0]})
@@ -86,14 +89,22 @@ const UserStore = create((set)=>({
 
     ProfileSaveRequest:async(PostBody)=>{
         try {
+
+            let token = getToken()
+            console.log(token)
+            const headers = {
+                'token': token,
+                'user_id': '659279f3bfe531ab7537567d',
+                'Content-Type': 'application/json',
+            };
             set({ProfileDetails:null})
-            let res=await axios.post(`/api/v1/CreateUserProfile`,PostBody);
+            let res=await axios.post(`/api/v1/CreateUserProfile`,PostBody, { headers });
+            
             return res.data['status'] === "success";
         }catch (e) {
-            unauthorized(e.response.status)
+           unauthorized(e.response.status)
         }
     }
-
 
 }))
 

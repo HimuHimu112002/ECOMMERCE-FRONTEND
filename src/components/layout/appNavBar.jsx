@@ -22,13 +22,13 @@ const AppNavBar = () => {
     }
 
 
-    useEffect(() => {
-        (async ()=>{
-            if(isLogin()){
-                await  CartListRequest();
-            }
-        })()
-    }, []);
+    // useEffect(() => {
+    //     (async ()=>{
+    //         if(isLogin()){
+    //             await  CartListRequest();
+    //         }
+    //     })()
+    // }, []);
 
     return (
         <>

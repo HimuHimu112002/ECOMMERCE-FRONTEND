@@ -2,6 +2,7 @@ import UserStore from "../../store/UserStore.js";
 import ProfileSkeleton from "../../skeleton/profile-skeleton.jsx";
 import React, {useEffect} from "react";
 import toast from "react-hot-toast";
+import axios  from "axios";
 
 const ProfileForm = () => {
 
@@ -12,8 +13,7 @@ const ProfileForm = () => {
             await ProfileDetailsRequest()
         })()
     }, []);
-    
-    
+
     const Save = async () => {
       let res= await ProfileSaveRequest(ProfileForm);
       if(res){

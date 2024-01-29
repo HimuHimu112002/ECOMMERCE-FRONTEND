@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-
+import Cookies from "js-cookie";
 export function unauthorized(code){
     if(code===401){
         sessionStorage.clear();
@@ -14,6 +14,10 @@ export function setEmail(email){
 
 export function getEmail(){
   return sessionStorage.getItem("email")
+}
+
+export function getToken(){
+  return Cookies.get("token")
 }
 
 export  function TimestampToDate(timestamp) {
