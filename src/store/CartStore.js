@@ -1,6 +1,6 @@
 import create from 'zustand';
 import axios  from "axios";
-import {unauthorized} from "../utility/utility.js";
+import {GetUserID, getToken, unauthorized} from "../utility/utility.js";
 
 const CartStore=create((set)=>({
 
@@ -18,9 +18,15 @@ const CartStore=create((set)=>({
 
     CartSaveRequest:async(PostBody,productID)=>{
         try {
+            let token = getToken()
+            const headers = {
+                'token': token,
+                'user_id': GetUserID(),
+                'Content-Type': 'application/json',
+            };
             set({isCartSubmit:true})
             PostBody.productID=productID
-            let res=await axios.post();
+            let res=await axios.post("/api/v1/SaveCart",PostBody,{ headers });
             return res.data['status'] === "success";
         }catch (e) {
             unauthorized(e.response.status)
@@ -35,7 +41,13 @@ const CartStore=create((set)=>({
     CartCount:0,
     CartListRequest:async()=>{
         try {
-            let res=await axios.get();
+            let token = getToken()
+            const headers = {
+                'token': token,
+                'user_id': GetUserID(),
+                'Content-Type': 'application/json',
+            };
+            let res=await axios.get("/api/v1/CartServices",{headers});
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
 

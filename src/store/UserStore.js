@@ -1,6 +1,6 @@
 import create from 'zustand';
 import axios  from "axios";
-import {getEmail, getToken, setEmail, unauthorized} from "../utility/utility.js";
+import {GetUserID, getEmail, getToken, setEmail, setUserID, unauthorized} from "../utility/utility.js";
 import Cookies from "js-cookie";
 const UserStore = create((set)=>({
   
@@ -25,7 +25,7 @@ const UserStore = create((set)=>({
     },
 
 
-    UserLogoutRequest:async()=>{
+    UserLogoutRequest:async()=>{ 
         set({isFormSubmit:true})
         let res=await axios.post(`/api/v1/UserLogout`);
         set({isFormSubmit:false})
@@ -49,6 +49,8 @@ const UserStore = create((set)=>({
         set({isFormSubmit:true})
         let email= getEmail();
         let res=await axios.post(`/api/v1/OtpMatch/${email}/${otp}`);
+        setUserID(res.data.user_id._id)
+        //console.log(res.data.user_id._id)
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
@@ -72,7 +74,7 @@ const UserStore = create((set)=>({
     ProfileDetailsRequest:async()=>{
         try {
             const headers = {
-                'user_id': '659279f3bfe531ab7537567d',
+                'user_id': GetUserID(),
                 'Content-Type': 'application/json',
             };
             let res=await axios.get("/api/v1/ReadProfile", { headers });
@@ -91,10 +93,9 @@ const UserStore = create((set)=>({
         try {
 
             let token = getToken()
-            console.log(token)
             const headers = {
                 'token': token,
-                'user_id': '659279f3bfe531ab7537567d',
+                'user_id': GetUserID(),
                 'Content-Type': 'application/json',
             };
             set({ProfileDetails:null})

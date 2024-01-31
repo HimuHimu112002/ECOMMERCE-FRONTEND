@@ -21,10 +21,12 @@ const CartList = () => {
             <ul>
                 {
                     CartList.map((item,i)=>{
-                        return(<li key={i}>
-                                <p>{item['product']['title']}</p>
-                                <p>{item['product']['price']}</p>
-                        </li>)
+                        return(<div className='mb-5 border p-5 shadow-sm' key={i}>
+                                <h5>Serial Number: - {i+1}</h5>
+                                <h2>Product Name: {item['product']['title']}</h2>
+                                <h5>Product Price:{item['product']['price']}</h5>
+                                <img className='w-25' src={item.product.image}></img>
+                        </div>)
                     })
                 }
             </ul>

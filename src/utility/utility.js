@@ -12,6 +12,15 @@ export function setEmail(email){
     sessionStorage.setItem("email",email)
 }
 
+export function setUserID(id){
+    localStorage.setItem("id",id)
+}
+
+export function GetUserID(){
+    //localStorage.setItem("id",id)
+    return localStorage.getItem("id")
+}
+
 export function getEmail(){
   return sessionStorage.getItem("email")
 }
