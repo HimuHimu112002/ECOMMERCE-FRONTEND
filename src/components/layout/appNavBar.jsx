@@ -5,13 +5,16 @@ import ProductStore from "../../store/ProductStore.js";
 import UserStore from "../../store/UserStore.js";
 import UserSubmitButton from "../user/UserSubmitButton.jsx";
 import CartStore from "../../store/CartStore.js";
+import WishStore from '../../store/WishStore.js'
 import Cookies from "js-cookie";
+
 const AppNavBar = () => {
     
     const navigate=useNavigate()
     const {SetSearchKeyword,SearchKeyword}=ProductStore();
     const {isLogin,UserLogoutRequest}=UserStore();
     const {CartCount,CartListRequest}=CartStore();
+    const {WishCount}=WishStore();
 
     const onLogout=async ()=>{
         //await UserLogoutRequest()
@@ -22,13 +25,13 @@ const AppNavBar = () => {
     }
 
 
-    // useEffect(() => {
-    //     (async ()=>{
-    //         if(isLogin()){
-    //             await  CartListRequest();
-    //         }
-    //     })()
-    // }, []);
+    useEffect(() => {
+        (async ()=>{
+            if(isLogin()){
+                await  CartListRequest();
+            }
+        })()
+    }, []);
 
     return (
         <>
@@ -98,11 +101,15 @@ const AppNavBar = () => {
                                             {CartCount}
                                          <span className="visually-hidden">unread messages</span>
                                         </span>
-
                                     </Link>
-                                    <Link to="/wish" type="button" className="btn ms-2 btn-light d-flex">
-                                        <i className="bi text-dark bi-heart"></i>
+                                    <Link to="/wish" type="button" className="btn ms-2 btn-light position-relative">
+                                    <i className="bi text-dark bi-heart"></i>
+                                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                            {WishCount}
+                                         <span className="visually-hidden">unread messages</span>
+                                        </span>
                                     </Link>
+                                    
                                     <UserSubmitButton onClick={onLogout} text="Logout" className="btn ms-3 btn-success d-flex" />
                                     <Link type="button" className="btn ms-3 btn-success d-flex" to="/profile">Profile</Link>
                                 </>

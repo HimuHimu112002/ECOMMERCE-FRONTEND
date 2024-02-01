@@ -6,8 +6,6 @@ import {Link} from "react-router-dom";
 const Slider = () => {
 
     const {SliderList}=ProductStore();
-
-
     if(SliderList===null){
         return <SliderSkeleton/>
     }
@@ -22,8 +20,6 @@ const Slider = () => {
                                 <button key={i} type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to={i} className="active" aria-current="true" aria-label=""></button>
                             )
                         })}
-
-
                     </div>
                     <div className="carousel-inner py-5">
                         {

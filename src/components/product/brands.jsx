@@ -4,8 +4,8 @@ import BrandsSkeleton from "../../skeleton/brands-skeleton.jsx";
 import {Link} from "react-router-dom";
 
 const Brands = () => {
+    
     const {BrandList}=ProductStore();
-
     if(BrandList===null){
         return <BrandsSkeleton/>
     }

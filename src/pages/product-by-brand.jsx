@@ -18,7 +18,7 @@ const ProductByBrand = () => {
 
     return (
         <Layout>
-              <ProductList/>
+            <ProductList/>
         </Layout>
     );
 };

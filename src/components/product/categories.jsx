@@ -4,8 +4,8 @@ import CategoriesSkeleton from "../../skeleton/categories-skeleton.jsx";
 import {Link} from "react-router-dom";
 
 const Categories = () => {
-    const {CategoryList}=ProductStore();
 
+    const {CategoryList}=ProductStore();
     if(CategoryList===null){
         return <CategoriesSkeleton/>
     }

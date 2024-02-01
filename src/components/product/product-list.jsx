@@ -28,9 +28,6 @@ const ProductList = () => {
         })()
     }, [Filter]);
 
-
-
-
     return (
         <div className="container mt-2">
             <div className="row">
@@ -45,7 +42,6 @@ const ProductList = () => {
                                 })
 
                             ):<option></option>}
-
                         </select>
                         <label className="form-label mt-3">Categories</label>
                         <select value={Filter.categoryID} onChange={async (e)=>{await inputOnChange('categoryID',e.target.value)}} className="form-control form-select">
@@ -56,13 +52,9 @@ const ProductList = () => {
                                 })
 
                             ):<option></option>}
-
-
-
                         </select>
                         <label className="form-label mt-3">Maximum Price ${Filter.priceMax}</label>
                         <input value={Filter.priceMax} onChange={async (e)=>{await inputOnChange('priceMax',e.target.value)}} min={0} max={2000} step={50} type="range" className="form-range" />
-
 
                         <label className="form-label mt-3">Minimum Price ${Filter.priceMin}</label>
                         <input value={Filter.priceMin} onChange={async (e)=>{await inputOnChange('priceMin',e.target.value)}} min={0} max={2000} step={10} type="range" className="form-range" />

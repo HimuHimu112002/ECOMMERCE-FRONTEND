@@ -11,8 +11,6 @@ const FeatureStore=create((set)=>({
         }
     },
 
-
-
     LegalDetails:null,
     LegalDetailsRequest:async(type)=>{
         set({LegalDetails:null})

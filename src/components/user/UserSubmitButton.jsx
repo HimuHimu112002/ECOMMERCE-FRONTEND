@@ -4,7 +4,6 @@ import UserStore from "../../store/UserStore.js";
 const UserSubmitButton = (props) => {
 
     let {isFormSubmit}=UserStore();
-
     if(isFormSubmit===false){
         return  <button onClick={props.onClick} type="submit" className={props.className}>{props.text}</button>
     }else {

@@ -6,6 +6,7 @@ import ProductList from "../components/product/product-list.jsx";
 import Categories from '../components/product/categories.jsx';
 
 const ProductByCategory = () => {
+
     const {ListByCategoryRequest}=ProductStore();
     const {id}=useParams();
 
@@ -14,7 +15,6 @@ const ProductByCategory = () => {
             await ListByCategoryRequest(id)
         })()
     }, [id]);
-
 
     return (
         <Layout>

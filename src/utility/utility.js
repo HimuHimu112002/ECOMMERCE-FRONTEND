@@ -17,7 +17,6 @@ export function setUserID(id){
 }
 
 export function GetUserID(){
-    //localStorage.setItem("id",id)
     return localStorage.getItem("id")
 }
 

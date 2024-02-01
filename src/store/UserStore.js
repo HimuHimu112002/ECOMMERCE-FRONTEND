@@ -50,7 +50,6 @@ const UserStore = create((set)=>({
         let email= getEmail();
         let res=await axios.post(`/api/v1/OtpMatch/${email}/${otp}`);
         setUserID(res.data.user_id._id)
-        //console.log(res.data.user_id._id)
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
@@ -60,7 +59,6 @@ const UserStore = create((set)=>({
 
     ProfileForm:{cus_add:"",cus_city:"",cus_country:"",cus_fax:"",cus_name:"",cus_phone:"",cus_postcode:"",cus_state:"",ship_add:"",ship_city:"",ship_country:"",ship_name:"",ship_phone:"",ship_postcode:"",ship_state:""},
     ProfileFormChange:(name,value)=>{
-        console.log(value)
         set((state)=>({
             ProfileForm:{
                 ...state.ProfileForm,
@@ -100,7 +98,6 @@ const UserStore = create((set)=>({
             };
             set({ProfileDetails:null})
             let res=await axios.post(`/api/v1/CreateUserProfile`,PostBody, { headers });
-            
             return res.data['status'] === "success";
         }catch (e) {
            unauthorized(e.response.status)

@@ -4,7 +4,6 @@ import parse from "html-react-parser";
 const LegalContents = () => {
 
     const {LegalDetails}=FeatureStore();
-
     if(LegalDetails===null){
         return <LegalContentSkeleton/>
     }

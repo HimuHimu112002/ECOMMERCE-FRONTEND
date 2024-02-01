@@ -5,14 +5,17 @@ import parse from 'html-react-parser';
 import {useState} from "react";
 import Reviews from "./reviews.jsx";
 import CartStore from "../../store/CartStore.js";
+import WishStore from '../../store/WishStore.js'
 import CartSubmitButton from "../cart/CartSubmitButton.jsx";
 import toast from "react-hot-toast";
+import WishSubmitButton from "../wish/WishSubmitButton.jsx";
 const Details = () => {
 
     const {Details}=ProductStore();
     const [quantity,SetQuantity]=useState(1);
 
     const {CartFormChange,CartForm,CartSaveRequest,CartListRequest}=CartStore()
+    const {WishSaveRequest,WishListRequest} = WishStore()
 
     const incrementQuantity=()=>{
         SetQuantity(quantity=>quantity+1)
@@ -34,10 +37,18 @@ const Details = () => {
             toast.success("Cart Item fail");
         }
     }
-    
-    
-    
 
+    const AddWish = async (productID) => {
+        let res=await WishSaveRequest(productID);
+
+        if(res){
+            toast.success("Cart Item Added");
+            await  WishListRequest();
+        }else{
+            toast.success("Cart Item fail");
+        }
+    }
+    
     if(Details===null){
         return <DetailsSkeleton/>
     }
@@ -96,8 +107,7 @@ const Details = () => {
                                     <CartSubmitButton onClick={async ()=>{await AddCart(Details[0]['_id'], Details[0]['price'])}} className="btn w-100 btn-success" text="Add to Cart"/>
                                 </div>
                                 <div className="col-4  p-2">
-                                    <button className="btn w-100 btn-success">Add to Wish</button>
-                            
+                                <WishSubmitButton onClick={async ()=>{await AddWish(Details[0]['_id'])}} className="btn w-100 btn-success" text="Add to Cart"/>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +136,5 @@ const Details = () => {
             </div>
         );
     }
-
 };
 export default Details;

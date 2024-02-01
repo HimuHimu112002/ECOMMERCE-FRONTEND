@@ -5,7 +5,6 @@ import LegalContentSkeleton from "../../skeleton/legal-content-skeleton.jsx";
 const InvoiceList = () => {
 
     const {InvoiceListRequest,InvoiceList}=cartStore();
-
     useEffect(() => {
         (async ()=>{
             await InvoiceListRequest();
@@ -22,7 +21,7 @@ const InvoiceList = () => {
                     <ul>
                         {
                             InvoiceList.map((item,i)=>{
-                                return <li>
+                                return <li key={i}>
                                     <p>Invoice No: {item['tran_id']}</p>
                                     <p>Total Payable: {item['payable']}</p>
                                     <p>Cus Details: {item['cus_details']}</p>
@@ -36,8 +35,6 @@ const InvoiceList = () => {
             </div>
         );
     }
-
-
 };
 
 export default InvoiceList;

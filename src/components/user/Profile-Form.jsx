@@ -24,7 +24,6 @@ const ProfileForm = () => {
 
     }
     
-
     if(ProfileDetails===null){
         return (
             <ProfileSkeleton/>

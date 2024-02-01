@@ -4,12 +4,14 @@ import Layout from "../components/layout/layout.jsx";
 import LegalContents from "../components/features/legal-contents.jsx";
 
 const HowToBuyPage = () => {
+    
     const {LegalDetailsRequest}=FeatureStore();
     useEffect(() => {
         (async ()=>{
             await LegalDetailsRequest("howtobuy")
         })()
     }, []);
+
     return (
         <Layout>
             <LegalContents/>

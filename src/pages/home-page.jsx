@@ -13,7 +13,6 @@ const HomePage = () => {
     const {BrandListRequest,CategoryListRequest,SliderListRequest,ListByRemarkRequest}=ProductStore();
     const {FeatureListRequest}=FeatureStore();
 
-
     useEffect(() => {
         (async ()=>{
             await SliderListRequest();
@@ -27,11 +26,11 @@ const HomePage = () => {
 
     return (
         <Layout>
-               <Slider/>
-               <Features/>
-               <Categories/>
-               <Products/>
-               <Brands/>
+            <Slider/>
+            <Features/>
+            <Categories/>
+            <Products/>
+            <Brands/>
         </Layout>
     );
 };

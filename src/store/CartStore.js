@@ -17,7 +17,6 @@ const CartStore=create((set)=>({
     },
 
     CartSaveRequest:async(PostBody,productID, price)=>{
-        console.log(PostBody)
         try {
             let token = getToken()
             const headers = {

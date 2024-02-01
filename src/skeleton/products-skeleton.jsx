@@ -22,8 +22,6 @@ const ProductsSkeleton = () => {
                         )
                     })
                 }
-
-
             </div>
         </div>
     );

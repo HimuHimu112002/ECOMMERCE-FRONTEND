@@ -5,6 +5,7 @@ import Brands from "../components/product/brands.jsx";
 import ProductStore from "../store/ProductStore.js";
 import {useEffect} from "react";
 const ProductDetails = () => {
+    
     const {BrandList,DetailsRequest,ReviewListRequest,BrandListRequest}=ProductStore();
     const {id}=useParams();
 

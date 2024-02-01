@@ -5,7 +5,7 @@ import CartList from "../components/cart/cart-list.jsx";
 const CartPage = () => {
     return (
         <Layout>
-                <CartList/>
+            <CartList/>
         </Layout>
     );
 };
