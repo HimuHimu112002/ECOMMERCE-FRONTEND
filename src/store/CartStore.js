@@ -16,7 +16,8 @@ const CartStore=create((set)=>({
         }))
     },
 
-    CartSaveRequest:async(PostBody,productID)=>{
+    CartSaveRequest:async(PostBody,productID, price)=>{
+        console.log(PostBody)
         try {
             let token = getToken()
             const headers = {
@@ -25,7 +26,8 @@ const CartStore=create((set)=>({
                 'Content-Type': 'application/json',
             };
             set({isCartSubmit:true})
-            PostBody.productID=productID
+            PostBody.productID = productID
+            PostBody.price = price
             let res=await axios.post("/api/v1/SaveCart",PostBody,{ headers });
             return res.data['status'] === "success";
         }catch (e) {
@@ -34,7 +36,6 @@ const CartStore=create((set)=>({
             set({isCartSubmit:false})
         }
     },
-
 
 
     CartList:null,
@@ -47,7 +48,7 @@ const CartStore=create((set)=>({
                 'user_id': GetUserID(),
                 'Content-Type': 'application/json',
             };
-            let res=await axios.get("/api/v1/CartServices",{headers});
+            let res = await axios.get("/api/v1/CartServices",{headers});
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
 
@@ -57,9 +58,6 @@ const CartStore=create((set)=>({
             set({isCartSubmit:false})
         }
     },
-
-
-
 
     CreateInvoiceRequest:async()=>{
         try {
@@ -72,7 +70,6 @@ const CartStore=create((set)=>({
             set({isCartSubmit:false})
         }
     },
-
 
     InvoiceList:null,
     InvoiceListRequest:async()=>{

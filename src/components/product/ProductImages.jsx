@@ -9,9 +9,6 @@ const ProductImages = () => {
         {original: Details[0]['details']['img3'], thumbnail: Details[0]['details']['img3']},
         {original: Details[0]['details']['img4'], thumbnail: Details[0]['details']['img4']},
         {original: Details[0]['details']['img5'], thumbnail: Details[0]['details']['img5']},
-        {original: Details[0]['details']['img6'], thumbnail: Details[0]['details']['img6']},
-        {original: Details[0]['details']['img7'], thumbnail: Details[0]['details']['img7']},
-        {original: Details[0]['details']['img8'], thumbnail: Details[0]['details']['img8']},
     ]
 
     return (

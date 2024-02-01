@@ -24,12 +24,14 @@ const Details = () => {
         }
     }
     
-    const AddCart = async (productID) => {
-        let res=await CartSaveRequest(CartForm,productID);
+    const AddCart = async (productID, price) => {
+        let res=await CartSaveRequest(CartForm,productID, price);
 
         if(res){
             toast.success("Cart Item Added");
             await  CartListRequest();
+        }else{
+            toast.success("Cart Item fail");
         }
     }
     
@@ -91,7 +93,7 @@ const Details = () => {
                                     </div>
                                 </div>
                                 <div className="col-4  p-2">
-                                    <CartSubmitButton onClick={async ()=>{await AddCart(Details[0]['_id'])}} className="btn w-100 btn-success" text="Add to Cart"/>
+                                    <CartSubmitButton onClick={async ()=>{await AddCart(Details[0]['_id'], Details[0]['price'])}} className="btn w-100 btn-success" text="Add to Cart"/>
                                 </div>
                                 <div className="col-4  p-2">
                                     <button className="btn w-100 btn-success">Add to Wish</button>
