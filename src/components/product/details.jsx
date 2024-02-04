@@ -107,7 +107,7 @@ const Details = () => {
                                     <CartSubmitButton onClick={async ()=>{await AddCart(Details[0]['_id'], Details[0]['price'])}} className="btn w-100 btn-success" text="Add to Cart"/>
                                 </div>
                                 <div className="col-4  p-2">
-                                <WishSubmitButton onClick={async ()=>{await AddWish(Details[0]['_id'])}} className="btn w-100 btn-success" text="Add to Cart"/>
+                                <WishSubmitButton onClick={async ()=>{await AddWish(Details[0]['_id'])}} className="btn w-100 btn-success" text="Add Wish List"/>
                                 </div>
                             </div>
                         </div>

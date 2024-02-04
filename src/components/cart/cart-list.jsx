@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import cartStore from "../../store/CartStore.js";
 import LegalContentSkeleton from "../../skeleton/legal-content-skeleton.jsx";
 import CartSubmitButton from "./CartSubmitButton.jsx";
-import axios from "axios"
-import { GetUserID, getToken } from '../../utility/utility.js';
+import toast from "react-hot-toast";
 
 const CartList = () => {
-    const {CartListRequest,CartList,CreateInvoiceRequest}=cartStore();
+    const {CartListRequest,CartList,CreateInvoiceRequest,RemoveCart}=cartStore();
     useEffect(() => {
         (async ()=>{
             await CartListRequest()
@@ -17,15 +16,14 @@ const CartList = () => {
         return <LegalContentSkeleton/>
     }
 
-    let handleDelete = async(id)=>{
-        console.log(id)
-        let token = getToken()
-        const headers = {
-            'token': token,
-            'user_id': GetUserID(),
-            'Content-Type': 'application/json',
-        };
-        await axios.post("http://localhost:5000/api/v1/RemoveCart",id,{headers})
+    const handleDelete = async (productID) => {
+        let res=await RemoveCart(productID);
+        if(res){
+            toast.success("Cart Item Delete");
+            await  CartListRequest();
+        }else{
+            toast.success("Cart Item Delete fail");
+        }
     }
    
     return (
@@ -43,7 +41,7 @@ const CartList = () => {
                                     <h5>Product Price: {item['product']['discountPrice']}</h5>
                                     <img className='w-25' src={item.product.image}></img>
                                 </div>
-                                <button onClick={()=>handleDelete(item._id)} type="primary">Delete Product</button>
+                                <button className='btn btn-success my-2' onClick={()=>handleDelete(item._id)} type="primary">Delete Product</button>
                             </div>
                         )
                     })

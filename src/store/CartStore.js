@@ -70,6 +70,22 @@ const CartStore=create((set)=>({
         }
     },
 
+    RemoveCart:async(productID)=>{
+        console.log("store",productID)
+        try {
+            let token = getToken()
+            const headers = {
+                'token': token,
+                'user_id': GetUserID(),
+                'Content-Type': 'application/json',
+            };
+            let res=await axios.post("/api/v1/RemoveCart",productID,{ headers });
+            return res.data['status'] === "success";
+        }catch (e) {
+            unauthorized(e.response.status)
+        }
+    },
+
     InvoiceList:null,
     InvoiceListRequest:async()=>{
         try {
