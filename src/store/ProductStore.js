@@ -1,5 +1,6 @@
 import create from 'zustand';
 import axios  from "axios";
+import { json } from 'react-router-dom';
 
 const ProductStore=create((set)=>({
     
@@ -24,7 +25,8 @@ const ProductStore=create((set)=>({
     // done ========================
     SliderList:null,
     SliderListRequest:async()=>{
-        let res = await axios.get(`/api/v1/GetProductSliderList`);
+        let res = fetch(`https://project-back-td11-onrender.com/api/v1/GetProductSliderList`).then((response) => response.json()).then((json) => console.log(json));
+        console.log("get",res)
         if(res.data['status']==="success"){
             set({SliderList:res.data['data']})
         }
@@ -34,7 +36,7 @@ const ProductStore=create((set)=>({
     ListByRemark:null,
     ListByRemarkRequest:async()=>{
         set({ListByRemark:null})
-        let res=await axios.get(`/api/v1/GetAllProduct`);
+        let res=await axios.get(`https://project-back-td11-onrender.com/api/v1/GetAllProduct`);
         if(res.data['status']==="success"){
             set({ListByRemark:res.data['data']})
         }
