@@ -18,7 +18,9 @@ import ProfilePage from "./pages/profile-page.jsx";
 import CartPage from "./pages/cart-page.jsx";
 import InvoicePage from "./pages/invoice-page.jsx";
 import Wishlist from './components/wish/wish-list.jsx';
+import axios from 'axios';
 const App = () => {
+    axios.defaults.baseURL = 'https://project-back-td11.onrender.com';
     return (
         <BrowserRouter>
             <Routes>

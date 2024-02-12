@@ -36,6 +36,7 @@ const ProductStore=create((set)=>({
     ListByRemarkRequest:async()=>{
         set({ListByRemark:null})
         let res=await axios.get(`/api/v1/GetAllProduct`);
+        //let res=await axios.get(`https://project-back-td11.onrender.com/api/v1/GetAllProduct`);
         if(res.data['status']==="success"){
             set({ListByRemark:res.data['data']})
         }
